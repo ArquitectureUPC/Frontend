@@ -7,7 +7,7 @@ class UsersService {
     storageUser = -1;
 
     signInService(user, password){
-        return http.post(`users/auth/sign-in`, {UserNick:user, Pass:password})
+        return http.post(`https://localhost:5001/api/v1/users/auth/sign-in`, {userNick:user, pass:password})
     }
 
     userService(){

@@ -1,9 +1,6 @@
 <template>
   <v-app>
-    <v-dialog
-        v-model="dialog"
-        max-width="500px"
-    >
+    <v-dialog v-model="dialog" max-width="500px">
 
       <v-card>
         <v-card-title>
@@ -14,75 +11,26 @@
           <v-container>
             <v-row>
 
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    v-model="editedItem.type"
-                    label="type"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.type" label="type"></v-text-field>
               </v-col>
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    v-model="editedItem.name"
-                    label="name"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.name" label="name"></v-text-field>
               </v-col>
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    v-model="editedItem.attention"
-                    label="attention"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.attention" label="attention"></v-text-field>
               </v-col>
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    v-model="editedItem.age"
-                    label="age"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.age"  type="number"    label="age"></v-text-field>
               </v-col>
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    v-model="editedItem.race"
-                    label="race"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.race" label="race"></v-text-field>
               </v-col>
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    v-model="editedItem.urlToImage"
-                    label="urlToImage"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.urlToImage" label="urlToImage"></v-text-field>
               </v-col>
-              <v-col
-                  cols="12"
-                  sm="6"
-                  md="4"
-              >
-                <v-text-field
-                    v-model="editedItem.isAdopted"
-                    label="isAdopted"
-                ></v-text-field>
+              <v-col cols="12" sm="6" md="4">
+                <v-text-field v-model="editedItem.isAdopted" label="isAdopted"></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -90,18 +38,10 @@
 
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn
-              color="blue darken-1"
-              text
-              @click="close"
-          >
+          <v-btn color="blue darken-1" text @click="close">
             Cancel
           </v-btn>
-          <v-btn
-              color="blue darken-1"
-              text
-              @click="save"
-          >
+          <v-btn color="blue darken-1" text @click="save">
             Save
           </v-btn>
         </v-card-actions>
@@ -123,16 +63,12 @@
     <v-container>
       <v-row>
         <v-col cols="9">
-          <v-text-field label="Search..."
-                        solo
-                        prepend-inner-icon="mdi-magnify"
-                        v-model="to_find"
-          ></v-text-field>
+          <v-text-field label="Search..." solo prepend-inner-icon="mdi-magnify" v-model="to_find"></v-text-field>
         </v-col>
         <v-col cols="3">
 
           <v-btn style="width: 100%; min-height: 47px" class="mb-2 white--text red darken-1 "
-                 @click.stop="dialog = true">
+            @click.stop="dialog = true">
             <v-icon top>
               mdi-plus
             </v-icon>
@@ -142,72 +78,48 @@
       </v-row>
 
       <v-row>
-        <v-col
-            v-for="pet in pets"
-            :key="pet.id"
-            cols="12"
-            sm="6"
-            md="4"
-            v-show='pet.name.includes(to_find) || to_find === ""'
-        >
+        <v-col v-for="pet in pets" :key="pet.id" cols="12" sm="6" md="4"
+          v-show='pet.name.includes(to_find) || to_find === ""'>
 
-          <v-card
-              class="mx-auto"
-              max-width="344"
-          >
+          <v-card class="mx-auto" max-width="344">
 
 
-            <v-img
-                :src="pet.urlToImage"
-                class="white--text align-end"
-                height="200"
-                gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)"
-            >
+            <v-img :src="pet.urlToImage" class="white--text align-end" height="200"
+              gradient="to bottom, rgba(0,0,0,.1), rgba(0,0,0,.5)">
               <v-card-title v-text="pet.name"></v-card-title>
             </v-img>
 
 
             <v-card-actions>
-              <v-btn
-                  color="orange lighten-2"
-                  text
-                  @click="editItem(pet)"
-              >
+              <v-btn color="orange lighten-2" text @click="editItem(pet)">
                 Edit
               </v-btn>
 
-              <v-btn
-                  color="orange lighten-2"
-                  text
-                  @click="deleteItem(pet)"
-              >
+              <v-btn color="orange lighten-2" text @click="deleteItem(pet)">
                 Delete
               </v-btn>
               <v-spacer></v-spacer>
 
-              <v-btn
-                  icon
-                  @click=" showInfCard(pet.id)"
-              >
+              <v-btn icon @click="showInfCard(pet.id)">
                 <v-icon>{{
                     showAux == pet.id || (showAux == 1 && pet.id == 0) ? 'mdi-chevron-up' : 'mdi-chevron-down'
-                  }}
+                }}
                 </v-icon>
               </v-btn>
             </v-card-actions>
 
             <v-expand-transition>
-              <div v-show="showAux==pet.id || (showAux==1&&pet.id==0)">
+              <div v-show="showAux == pet.id || (showAux == 1 && pet.id == 0)">
                 <v-divider></v-divider>
 
 
                 <v-card-text overline style="text-align:left">
-                  Name: {{ pet.name }} <br/>
-                  Type: {{ pet.type }} <br/>
-                  Required Attention: {{ pet.attention }} <br/>
-                  Race: {{ pet.race }} <br/>
-                  Age: {{ pet.age }} <br/>
-                  Image: {{ pet.urlToImage }} <br/>
+                  Name: {{ pet.name }} <br />
+                  Type: {{ pet.type }} <br />
+                  Required Attention: {{ pet.attention }} <br />
+                  Race: {{ pet.race }} <br />
+                  Age: {{ pet.age }} <br />
+                  Image: {{ pet.urlToImage }} <br />
                   Is Adopted?: {{ pet.isAdopted }}
                 </v-card-text>
 
@@ -242,14 +154,14 @@ export default {
         sortable: false,
         value: 'id',
       },
-      {text: 'type', value: 'type'},
-      {text: 'name', value: 'name'},
-      {text: 'attention', value: 'attention'},
-      {text: 'race', value: 'race'},
-      {text: 'age', value: 'age', sortable: false},
-      {text: 'urlToImage', value: 'urlToImage', sortable: false},
-      {text: 'isAdopted', value: 'isAdopted', sortable: false},
-      {text: 'Actions', value: 'actions', sortable: false},
+      { text: 'type', value: 'type' },
+      { text: 'name', value: 'name' },
+      { text: 'attention', value: 'attention' },
+      { text: 'race', value: 'race' },
+      { text: 'age', value: 'age', sortable: false },
+      { text: 'urlToImage', value: 'urlToImage', sortable: false },
+      { text: 'isAdopted', value: 'isAdopted', sortable: false },
+      { text: 'Actions', value: 'actions', sortable: false },
     ],
     pets: [],
     auxPets: [],
@@ -305,9 +217,9 @@ export default {
   methods: {
     async getPets() {
       await PetsService.getPets(localStorage.getItem('user')).then(
-          async response => {
-            this.pets = await response.data;
-          }
+        async response => {
+          this.pets = await response.data;
+        }
       )
     },
 
@@ -346,10 +258,13 @@ export default {
     },
 
     save() {
+      if(this.editedItem.urlToImage===''){
+          this.editedItem.urlToImage='https://www.flytap.com/-/media/Flytap/new-tap-pages/travelling-with-animals/pets/flying-with-pets-og-image-1200x630.jpg'
+        }
       if (this.editedIndex > -1) {
         Object.assign(this.pets[this.editedIndex], this.editedItem)
         console.log(this.editedItem);
-
+        
         PetsService.putPet(this.editedItem.id, {
           id: this.editedItem.id,
           type: this.editedItem.type,
@@ -363,6 +278,7 @@ export default {
           userId: localStorage.getItem("user")
         })
       } else {
+        
         console.log(this.editedItem)
         PetsService.postPet({
           type: this.editedItem.type,
@@ -374,7 +290,7 @@ export default {
           urlToImage: this.editedItem.urlToImage,
           userId: localStorage.getItem("user")
         }).then(
-            this.getPets
+          this.getPets
         );
 
       }

@@ -1,12 +1,15 @@
+
 <template>
-  <v-app >
 
-      <app-bar></app-bar>
+  <v-app>
 
-    <v-main >
-      <v-container fluid >
+    <app-bar v-if="!$route.meta.hideNavbar">
+    </app-bar>
 
-      <router-view/>
+    <v-main>
+      <v-container fluid>
+
+        <router-view />
 
       </v-container>
     </v-main>
@@ -29,14 +32,14 @@
 import router from "@/router";
 import appBar from "@/components/app-bar";
 export default {
-  data () {
+  data() {
     return {
       drawNavigation: true,
       router: router
     }
   },
-  components: {appBar},
-  methods:{
+  components: { appBar },
+  methods: {
 
   }
 }

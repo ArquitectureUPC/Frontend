@@ -316,9 +316,13 @@ export default {
     tempUser: -1
   }),
   methods: {
+    
     async retrieveUsers() {
       this.storageUser = UsersService.storageUser;
       this.tempUser = UsersService.getCurrentUser()
+      if(this.urlToImageProfile==''){
+        this.urlToImageProfile='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'
+    }
       await UsersService.getUsersById(localStorage.getItem("user"))
         .then(async response => {
           this.type = await response.data.type;
@@ -352,6 +356,9 @@ export default {
       this.dialog = false;
     },
     Save() {
+      if(this.urlToImageProfile==''){
+        this.urlToImageProfile='https://www.iconpacks.net/icons/2/free-user-icon-3296-thumb.png'
+      }
       UsersService.updateUserById(localStorage.getItem("user"), {
         type: this.type,
         userNick: this._user,

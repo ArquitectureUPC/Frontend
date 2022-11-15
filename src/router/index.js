@@ -8,12 +8,18 @@ const routes = [
   {
     path: '/',
     name: 'SignIn',
-    component: SignIn
+    component: SignIn,
+    meta: {
+      hideNavbar: true,
+    }
   },
   {
     path: '/SignIn',
     name: 'SignIn',
-    component: SignIn
+    component: SignIn,
+    meta: {
+      hideNavbar: true,
+    }
   },
   {
     path: '/home',
@@ -31,7 +37,8 @@ const routes = [
   {
     path: '/generalview',
     name: 'generalview',
-    component:()=>import ('../components/GeneralView')
+    component:()=>import ('../components/GeneralView'),
+   
   },
   {
     path: '/editPublication',
