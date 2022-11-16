@@ -1,96 +1,97 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
+import Vue from "vue";
+import VueRouter from "vue-router";
 import Home from "@/views/Home";
 import SignIn from "@/components/SignIn";
-Vue.use(VueRouter)
+import discountedAdd from "@/components/viewAddswithDiscount";
+Vue.use(VueRouter);
 
 const routes = [
   {
-    path: '/',
-    name: 'SignIn',
+    path: "/",
+    name: "SignIn",
     component: SignIn,
     meta: {
       hideNavbar: true,
-    }
+    },
   },
   {
-    path: '/SignIn',
-    name: 'SignIn',
+    path: "/SignIn",
+    name: "SignIn",
     component: SignIn,
     meta: {
       hideNavbar: true,
-    }
+    },
   },
   {
-    path: '/home',
-    name: 'home',
-    component: Home
+    path: "/home",
+    name: "home",
+    component: Home,
   },
   {
-    path: '/createpublication',
-    name: 'createpublication',
+    path: "/createpublication",
+    name: "createpublication",
     // route level code-splitting
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../components/createpublication')
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../components/createpublication"),
   },
   {
-    path: '/generalview',
-    name: 'generalview',
-    component:()=>import ('../components/GeneralView'),
-   
+    path: "/generalview",
+    name: "generalview",
+    component: () => import("../components/GeneralView"),
   },
   {
-    path: '/editPublication',
-    name: 'editPublication',
-    component:()=>import ('../components/editPublication')
+    path: "/editPublication",
+    name: "editPublication",
+    component: () => import("../components/editPublication"),
   },
   {
-    path: '/myPublications',
-    name: 'myPublications',
-    component:()=>import ('../components/ViewMyPublications')
+    path: "/myPublications",
+    name: "myPublications",
+    component: () => import("../components/ViewMyPublications"),
   },
   {
-    path: '/myPets',
-    name: 'myPets',
-    component:()=>import ('../components/viewMyPets')
+    path: "/myPets",
+    name: "myPets",
+    component: () => import("../components/viewMyPets"),
   },
   {
-    path: '/allPublications',
-    name: 'viewAllPublications',
-    component:()=>import ('../components/viewAllPublications')
+    path: "/allPublications",
+    name: "viewAllPublications",
+    component: () => import("../components/viewAllPublications"),
   },
   {
-    path: '/myUserProfile',
-    name: 'viewMyUserProfile',
-    component:()=>import ('../components/viewMyUserProfile')
+    path: "/myUserProfile",
+    name: "viewMyUserProfile",
+    component: () => import("../components/viewMyUserProfile"),
   },
   {
-    path: '/createAD',
-    name: 'CreateAdd-Vet',
-    component:()=>import ('../components/createAd')
+    path: "/createAD",
+    name: "CreateAdd-Vet",
+    component: () => import("../components/createAd"),
   },
   {
-    path: '/discountedAdds',
-    name: 'discountedAdd',
-    component:()=>import ('../components/viewAddswithDiscount')
+    path: "/discountedAdds",
+    name: "discountedAdd",
+    component: discountedAdd,
   },
   {
-    path: '/myAds',
-    name: 'myAds',
-    component:()=>import ('../components/viewMyAds')
+    path: "/myAds",
+    name: "myAds",
+    component: () => import("../components/viewMyAds"),
   },
   {
-    path: '/myNotifications',
-    name: 'myNotifications',
-    component:()=>import ('../components/viewNotifications')
-  }
-]
+    path: "/myNotifications",
+    name: "myNotifications",
+    component: () => import("../components/viewNotifications"),
+  },
+];
 
 const router = new VueRouter({
-  mode: 'history',
+  mode: "history",
   base: process.env.BASE_URL,
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

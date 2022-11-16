@@ -12,7 +12,6 @@
 
         <div class="text-center">
           <v-menu
-              open-on-hover
               top
               offset-y
           >
@@ -139,7 +138,7 @@
           </v-col>
           <v-col cols="3">
 
-            <v-btn style="width: 100%; min-height: 47px" class="mb-2 white--text red darken-1 "
+            <v-btn style="width: 100%; min-height: 47px" class="mb-2 black--text amber darken-1 "
                    @click.stop="dialog = true"
 
             >

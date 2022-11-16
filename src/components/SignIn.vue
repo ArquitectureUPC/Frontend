@@ -66,15 +66,20 @@
                         </v-btn>
                       </div>
                     </v-col>
-                    <v-col cols="12" md="4" class="amber accent-3" >
+                    <v-col cols="12" md="4" class="amber accent-3">
                       <v-card-text class="text-black mt-12">
                         <h1 class="text-center display-1">Hello, Friend!</h1>
                         <h5 class="text-center">
                           Enter your personal details and start journay with us
                         </h5>
                       </v-card-text>
-                      <div class="text-center ">
-                        <v-btn rounded outlined dark @click="step++" class="text-black"
+                      <div class="text-center">
+                        <v-btn
+                          rounded
+                          outlined
+                          dark
+                          @click="step++"
+                          class="text-black"
                           >SIGN UP</v-btn
                         >
                       </div>
@@ -91,8 +96,13 @@
                           personnel info
                         </h5>
                       </v-card-text>
-                      <div class="text-center ">
-                        <v-btn rounded outlined dark @click="step--" class="text-black"
+                      <div class="text-center">
+                        <v-btn
+                          rounded
+                          outlined
+                          dark
+                          @click="step--"
+                          class="text-black"
                           >Sign in</v-btn
                         >
                       </div>
@@ -101,8 +111,8 @@
                     <v-col cols="12" md="8">
                       <v-card-text class="mt-12">
                         <h1
-                          class="text-black
-                            text-center
+                          class="
+                            text-black text-center
                             display-2
                             text--accent-3
                           "
@@ -138,9 +148,10 @@
                             label="Email"
                             name="Email"
                             prepend-icon="mdi-email"
-                            type="text"
+                            type="email"
                             color="primary accent-3"
-                          />
+                          >
+                          </v-text-field>
 
                           <v-text-field
                             v-model="Password"
@@ -163,19 +174,18 @@
                               @click="ChangeTypeUser(n)"
                             ></v-radio>
                           </v-radio-group>
-                        
+                          <div class="text-center mb-5">
+                            <v-btn
+                              class="text-black"
+                              rounded
+                              color="amber accent-3"
+                              dark
+                              v-on:click="SignUp(User, Email, Password)"
+                              >SIGN UP
+                            </v-btn>
+                          </div>
                         </v-form>
                       </v-card-text>
-                      <div class="text-center mb-5">
-                        <v-btn
-                          class="text-black"
-                          rounded
-                          color="amber accent-3"
-                          dark
-                          @click="SignUp(User, Email, Password)"
-                          >SIGN UP
-                        </v-btn>
-                      </div>
                     </v-col>
                   </v-row>
                 </v-window-item>
@@ -194,73 +204,57 @@ import usersService from "../core/services/users.service";
 export default {
   name: "app-SignIn",
   data: () => ({
-    user: '',
-    password: '',
+    user: "",
+    password: "",
     step: 1,
-    Email: '',
-    typeUser: 'Cliente',
-    typeUsers:['Cliente','Veterinario','Proveedor']
+    Email: "",
+    typeUser: "Cliente",
+    typeUsers: ["Cliente", "Veterinario", "Proveedor"],
   }),
   computed: {
     loggedIn() {
       return this.$store.state.auth.status.loggedIn;
-    }
+    },
   },
   created() {
     if (this.loggedIn) {
-      this.$router.push('/allPublications');
+      this.$router.push("/allPublications");
     }
   },
   methods: {
     ChangeTypeUser(typeUser) {
       this.typeUser = typeUser;
-      console.log(this.typeUser)
     },
     async handleLogin(user, password) {
-      console.log(user,password)
+      console.log(user, password);
       if ((await usersService.signInService(user, password)).status === 200) {
-        await usersService.signInService(user, password).then( response =>{
+        await usersService.signInService(user, password).then((response) => {
           localStorage.setItem("user", response.data.id);
-          localStorage.setItem("token", response.data.token)
-        })
-        await this.$router.push('/myUserProfile');
+          localStorage.setItem("typeUser", response.data.type);
+          localStorage.setItem("token", response.data.token);
+        });
+        await this.$router.push("/allPublications");
       }
-      // if (res.status === 200) {
-      //   console.log("SUCCESSFUL")
-      // } else {
-      //   console.log("FAILED")
-      // }
-      // console.log("ENTRANDO AL handleLogin")
-      //
-      // this.user.userNick = user;
-      // this.user.pass = password;
-      // const API_URL = 'https://localhost:5001/api/v1/users/auth/sign-in';
-      // const response = await axios.post(API_URL, this.user);
-      // localStorage.setItem('token', response.data.token);
-      // const parsed = JSON.stringify(response.data);
-      // localStorage.setItem('user',parsed);
-      // this.currentUser=JSON.parse(localStorage.getItem('user'));
-      // await this.$store.dispatch('user', this.currentUser);
-      // UsersService.currentUser=this.currentUser.id;
-      // UsersService.storageUser=this.currentUser.id;
-      //
-      // UsersService.userService();
     },
     SignUp(user, email, password) {
-      console.log(user, email, password, this.typeUser)
-      UsersService.postUser(
-          {
-            UserNick: user,
-            Email: email,
-            Pass: password,
-            Type: this.typeUser,
-            urlToImageBackground: "https://png.pngtree.com/background/20210715/original/pngtree-simple-pet-cat-paw-hand-drawn-background-picture-image_1282067.jpg",
-            urlToImageProfile: "https://cdn.pixabay.com/photo/2020/06/30/10/23/icon-5355896__340.png"
-          })
-      this.step--;
-    }
+      console.log(user, email, password, this.typeUser);
+      UsersService.postUser({
+        UserNick: user,
+        Email: email,
+        Pass: password,
+        Type: this.typeUser,
+        urlToImageBackground:
+          "https://png.pngtree.com/background/20210715/original/pngtree-simple-pet-cat-paw-hand-drawn-background-picture-image_1282067.jpg",
+        urlToImageProfile:
+          "https://cdn.pixabay.com/photo/2020/06/30/10/23/icon-5355896__340.png",
+      }).then((response) => {
+        if (response.status == 200) {
+          this.step--;
+        }
+      });
+    },
   },
-}
+};
 </script>
 
 <style scoped>

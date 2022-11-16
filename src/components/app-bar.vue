@@ -53,6 +53,8 @@ export default {
       for (let i = 0; i < 1; i++) {
         await this.sleep(i * 1000);
     }
+    localStorage.setItem("user",'');
+    localStorage.setItem("token",'')
     this.$router.push('/');
 
     },
