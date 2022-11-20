@@ -16,6 +16,7 @@
         <v-row>
           <div v-for="publication in publications" :key="publication.id">
             <div v-for="pet in pets" :key="pet.id">
+            
               <div v-for="user in listUsers" :key="user.id"
                    style="display: flex; justify-content: center; align-items: center">
                 <v-card
@@ -114,7 +115,8 @@ import CreatepublicationServices from "../core/services/createpublication.servic
 import PublicationsService from "../core/services/publications.service.js";
 import PetsService from "@/core/services/pets.service";
 import UsersService from "../core/services/users.service";
-// import filtergeneral from "../components/filter.vue";
+
+//import filtergeneral from "../components/filter.vue";
 import districtService from "../core/services/district.service";
 import NotificationService from "../core/services/notifications.service"
 
