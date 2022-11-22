@@ -1,5 +1,8 @@
 {
   "projects": {
-    "default": "osrem-proyect"
-  }
+    "default": "adoptemeya",
+    "adoptmeya": "adoptemeya"
+  },
+  "targets": {},
+  "etags": {}
 }

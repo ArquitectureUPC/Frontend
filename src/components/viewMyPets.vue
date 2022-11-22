@@ -168,7 +168,7 @@
 
 
 <script>
-import PetsService from "@/core/services/pets.service";
+import PetsService from "../core/services/pets.service";
 
 export default {
   name: "viewMyPets",
@@ -242,15 +242,15 @@ export default {
     },
   },
 
-  created() {
+  mounted() {
     this.getPets();
   },
 
   methods: {
-    async getPets() {
-      await PetsService.getPets(localStorage.getItem("user")).then(
-        async (response) => {
-          this.pets = await response.data;
+     getPets() {
+       PetsService.getPets(localStorage.getItem("user")).then(
+         response => {
+          this.pets =  response.data;
         }
       );
     },

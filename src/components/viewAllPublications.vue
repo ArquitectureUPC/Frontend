@@ -9,7 +9,6 @@
       <!--          </v-card-actions>-->
       <!--        </v-card>-->
       <!--      </div>-->
-
       <v-container class="cards">
         <v-row>
           <div v-for="publication in publications" :key="publication.id">
@@ -203,6 +202,8 @@ export default {
       this.listdistricts = districtService.getdistrictfilter();
     },
     getallUser() {
+      console.log("this.listUsers");
+
       UsersService.getAllUsers().then((response) => {
         this.listUsers = response.data;
         console.log("this.listUsers");
@@ -215,7 +216,8 @@ export default {
     },
   },
   mounted() {
-    this.currentUser = UsersService.getCurrentUser();
+    this.currentUser = localStorage;
+    console.log(localStorage.getItem("user"))
     this.retrievePublications();
     this.getAllPets();
     this.getallUser();

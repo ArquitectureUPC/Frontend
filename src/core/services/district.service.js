@@ -1,5 +1,4 @@
-import http from "./http-common"
-import axios from "axios";
+import axios from "./http-common"
 
 class districtService
 {
@@ -7,7 +6,7 @@ class districtService
     datafilter
     getAllDistricts()
     {
-        return axios.get(`https://localhost:5001/api/v1/district`)
+        return axios.get(`/district`)
     }
 
     getByDistrict(data){
@@ -17,7 +16,7 @@ class districtService
             this.getAllDistricts()
         }else
         {
-            return http.get(`/${this.endpoint}?district=${data}`)
+            return axios.get(`/${this.endpoint}?district=${data}`)
         }
     }
     getdistrictfilter() {

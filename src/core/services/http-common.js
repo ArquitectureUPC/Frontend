@@ -1,6 +1,6 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: "https://localhost:5001/api/v1",
+    baseURL: process.env.REACT_APP_BASE_URL ||'https://arquibackend.azurewebsites.net/api/v1',
     headers:{Authorization: localStorage.getItem('token'), "Content-type":"application/json"}
 });

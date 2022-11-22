@@ -1,27 +1,29 @@
-import axios from "axios";
+import axios from './http-common';
 
 class AddServices {
+    
     postNewAd(data){
-        return axios.post("https://localhost:5001/api/v1/Advertisements",data);
+        return axios.post(`/Advertisements`,data);
     }
     getAllAds(){
-        return axios.get("https://localhost:5001/api/v1/Advertisements/");
+        return axios.get(`/Advertisements`);
     }
     getAdById(id){
-        return axios.get(`https://localhost:5001/api/v1/Advertisements/${id}`);
+
+        return axios.get(`/Advertisements/${id}`);
     }
     getDiscountedAdds(){
-        return axios.get("https://localhost:5001/api/v1/Advertisements/promoted=true")
+        return axios.get(`/Advertisements/promoted=true`)
     }
     UpdateAd(id,data){
-        return axios.put(`https://localhost:5001/api/v1/Advertisements/${id}`,data);
+        return axios.put(`/Advertisements/${id}`,data);
     }
     DeleteAd(id)
     {
-        return axios.delete(`https://localhost:5001/api/v1/Advertisements/${id}`);
+        return axios.delete(`/Advertisements/${id}`);
     }
     getAllByUserId(id){
-        return axios.get(`https://localhost:5001/api/v1/users/${id}/Advertisements`)
+        return axios.get(`/users/${id}/Advertisements`)
     }
 }
 

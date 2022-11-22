@@ -226,7 +226,7 @@ export default {
       this.typeUser = typeUser;
     },
     async handleLogin(user, password) {
-      console.log(user, password);
+      // console.log(user, password);
       if ((await usersService.signInService(user, password)).status === 200) {
         await usersService.signInService(user, password).then((response) => {
           localStorage.setItem("user", response.data.id);

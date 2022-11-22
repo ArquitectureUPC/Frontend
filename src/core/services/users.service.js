@@ -1,17 +1,15 @@
 import http from "./http-common"
-import axios from 'axios';
-const API_URL = 'https://localhost:5001/api/v1/users';
-
 
 class UsersService {
     storageUser = -1;
 
     signInService(user, password){
-        return http.post(`https://localhost:5001/api/v1/users/auth/sign-in`, {userNick:user, pass:password})
+        console.log(user, password)
+        return http.post(`/users/auth/sign-in`, {userNick:user, pass:password})
     }
 
     userService(){
-       this.storageUser = JSON.parse(localStorage.getItem('user')).id
+        this.storageUser = JSON.parse(localStorage.getItem('user')).id
     }
 
     getCurrentUser(){
@@ -22,7 +20,7 @@ class UsersService {
     currentUser=0;
 
     getAllUsers(){
-        return http.get(API_URL);
+        return http.get(`/users`);
     }
 
     async getUsersById(index){
@@ -34,7 +32,7 @@ class UsersService {
     }
 
     postUser(data){
-        return axios.post(`https://localhost:5001/api/v1/users/auth/sign-up`, data)
+        return http.post(`/users/auth/sign-up`, data)
     }
 
 }
